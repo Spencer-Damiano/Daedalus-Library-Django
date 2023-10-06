@@ -17,5 +17,13 @@ def _func-name_(request):
 
 # Create your views here.
 def hello(request):
-    return HttpResponse('Hello, world!')
+    content = {
+        'name': 'Daedalus',
+    }
+    return render(request, 'index.html', content)
 
+def index(request):
+    content = {
+        'name': 'Daedalus Library',
+    }
+    return render(request, 'index.html', content)
