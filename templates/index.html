@@ -4,10 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../static/style/styles.css">
 </head>
 <body>
-    <h1>Page name {{name}}</h1>
+    <div class="header">
+        <div class="menu">
+            Menu
+        </div>
+        <div class="logo">
+            <h3>Daedalus Library</h3>
+        </div>
+        <div class="settings">
+            settings
+        </div>
+    </div>
 
-    <script src="../static/dist/helloworld.js"></script>
+    <div class="content">
+        <div class="container">
+
+            <div id="time">
+                <span class="digit" id="hr">
+                    00</span>
+                <span class="txt">Hr</span>
+                <span class="digit" id="min">
+                    00</span>
+                <span class="txt">Min</span>
+                <span class="digit" id="sec">
+                    00</span>
+                <span class="txt">Sec</span>
+                <span class="digit" id="count">
+                    00</span>
+            </div>
+            <div id="buttons">
+                <button class="btn" id="study">
+                    Study</button>
+                <button class="btn" id="break">
+                    Break</button>
+                <button class="btn" id="quit">
+                    Quit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="todo">todo</div>
+        <div class="music-player">music</div>
+        <div class="distraction">distraction</div>
+    </div>
+
+    <script src="../static/dist/flowmodoro.js"></script>
 </body>
 </html>
