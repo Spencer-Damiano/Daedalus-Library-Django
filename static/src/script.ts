@@ -1,26 +1,16 @@
+// Import other functions
 
-/* 
-Elements in the HTML by ID
-*/
+// Document Elements
 
-let startBtn = document.getElementById('startBtn');
-let stopBtn = document.getElementById('stopBtn');
-let resetBtn = document.getElementById('resetBtn');
+const timer = document.getElementById("timer");
 
-if (startBtn) {
-  startBtn.addEventListener('click', () => {
-    console.log('start');
+const studyBtn = document.getElementById("studyBtn");
+const breakBtn = document.getElementById("breakBtn");
+const finishedBtn = document.getElementById("finishedBtn");
+
+if (studyBtn) {
+  studyBtn.addEventListener("click", () => {
+    console.log("Study Button Clicked");
   });
 }
 
-if (stopBtn) {
-  stopBtn.addEventListener('click', () => {
-    console.log('stop');
-  });
-}
-
-if (resetBtn) {
-  resetBtn.addEventListener('click', () => {
-    console.log('reset');
-  });
-}
