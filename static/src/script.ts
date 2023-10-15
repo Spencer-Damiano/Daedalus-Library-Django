@@ -1,5 +1,5 @@
 // Import other functions
-import { flowTimer, breakTimer, finished } from "./StudySession.js";
+import { flowomodoro, breakTimer, studyTimer } from "./StudySession.js";
 
 // Document Elements
 
@@ -13,10 +13,15 @@ const finishedBtn = document.getElementById("finishedBtn");
 
 
 // Classes and Variables
-let studyBol = false;
-let breakBol = false;
+// let studying = false;
+// let !studying = false; // these are in StudySession.ts now and are determined by the buttons being clicked
 
-let studyingTime = 0;
+let studySession: number;
+let breakSession: number;
+let studyCycle = 0;
+let studyTime = 0;
+let studying = false;
+let breakTime = false;
 
 
 // Event Listeners
@@ -24,43 +29,62 @@ let studyingTime = 0;
 if (studyBtn) {
   studyBtn.addEventListener("click", () => {
     console.log("study button clicked");
-    breakBol = false;
-    studyBol = true;
 
-    
     let startTime = Date.now();
 
-    if (studyBol) {
-      setInterval(() => {studyingTime = flowTimer(startTime)});
+    studyCycle += 1;
+
+  
+    if (studyCycle % 2 === 0) {
+      clearInterval(studySession);
+
+      breakTime = true;
+
+      let endTime = Date.now() + (studyTime / 5); 
+      breakSession = setInterval(() => {breakTime = breakTimer(endTime)});
+
+      
+      if (breakTime = false) {
+        clearInterval(breakSession);
+        studyCycle += 1;
+        console.log('breakTimer() cleared, studyCycle incremented = ' + studyCycle);
+      }
+    } else if (studyCycle % 2 === 1) {
+      clearInterval(breakSession)
+      studySession = setInterval(() => {studyTime = studyTimer(startTime)});
     }
+
+    //studySession = setInterval(() => {flowomodoro(startTime, studying)}); // this is the problem. I need to figure out how to make this work with the flowomodoro() function
+    
+
+    
   });
 }
 
-if (breakBtn) {
-  breakBtn.addEventListener("click", () => {
-    console.log("break button clicked");
-    studyBol = false;
-    breakBol = true;
+// if (breakBtn) {
+//   breakBtn.addEventListener("click", () => {
+//     console.log("break button clicked");
+//     studying = false;
+//     !studying = true;
 
-    // studyingTime = Date.now() + 10000; // this is for testing purposes, just hit the break button if enabled
+//     studyingTime = Date.now() + 10000; // this is for testing purposes, just hit the break button if enabled
 
-    let breakTime = Date.now() + (studyingTime / 5);
+//     let breakTime = Date.now() + (studyingTime / 5);
 
-    if (breakBol) {
-      setInterval(() => {breakTimer(breakTime)});
-    }
-  });
-}
+//     if (!studying) {
+//       setInterval(() => {breakTimer(breakTime)});
+//     }
+
+
+//   });
+// }
 
 
 if (finishedBtn) {
   finishedBtn.addEventListener("click", () => {
     console.log("finished button clicked");
-    finished();
-
-    studyBol = false;
-    breakBol = false;
-    
+    clearInterval(studySession);
+    studyCycle = 0; // this is why the timer wouldn't reset
   });
 }
 
